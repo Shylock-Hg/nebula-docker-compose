@@ -323,3 +323,5 @@ services:
 
 networks:
   nebula-net:
+    external:
+      name: docker_nebula-net
