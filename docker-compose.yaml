@@ -6,11 +6,11 @@ services:
       USER: root
       TZ:   "${TZ}"
     command:
-      - --meta_server_addrs=metad0:45500,metad1:45500,metad2:45500
+      - --meta_server_addrs=metad0:9559,metad1:9559,metad2:9559
       - --local_ip=metad0
       - --ws_ip=metad0
-      - --port=45500
-      - --ws_http_port=11000
+      - --port=9559
+      - --ws_http_port=19559
       - --data_path=/data/meta
       - --log_dir=/logs
       - --v=0
