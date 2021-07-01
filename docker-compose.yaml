@@ -229,6 +229,7 @@ services:
       - --log_dir=/logs
       - --v=0
       - --minloglevel=0
+      - --system_memory_high_watermark_ratio=0.95
     depends_on:
       - metad0
       - metad1
@@ -264,6 +265,7 @@ services:
       - --log_dir=/logs
       - --v=0
       - --minloglevel=0
+      - --system_memory_high_watermark_ratio=0.95
     depends_on:
       - metad0
       - metad1
@@ -299,6 +301,7 @@ services:
       - --log_dir=/logs
       - --v=0
       - --minloglevel=0
+      - --system_memory_high_watermark_ratio=0.95
     depends_on:
       - metad0
       - metad1
