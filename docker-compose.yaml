@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   metad0:
-    image: vesoft/nebula-metad:v2-nightly
+    image: vesoft/nebula-metad:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -35,7 +35,7 @@ services:
       - SYS_PTRACE
 
   metad1:
-    image: vesoft/nebula-metad:v2-nightly
+    image: vesoft/nebula-metad:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -69,7 +69,7 @@ services:
       - SYS_PTRACE
 
   metad2:
-    image: vesoft/nebula-metad:v2-nightly
+    image: vesoft/nebula-metad:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -103,7 +103,7 @@ services:
       - SYS_PTRACE
 
   storaged0:
-    image: vesoft/nebula-storaged:v2-nightly
+    image: vesoft/nebula-storaged:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -141,7 +141,7 @@ services:
       - SYS_PTRACE
 
   storaged1:
-    image: vesoft/nebula-storaged:v2-nightly
+    image: vesoft/nebula-storaged:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -179,7 +179,7 @@ services:
       - SYS_PTRACE
 
   storaged2:
-    image: vesoft/nebula-storaged:v2-nightly
+    image: vesoft/nebula-storaged:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
@@ -217,13 +217,14 @@ services:
       - SYS_PTRACE
 
   graphd:
-    image: vesoft/nebula-graphd:v2-nightly
+    image: vesoft/nebula-graphd:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
       - --meta_server_addrs=metad0:9559,metad1:9559,metad2:9559
       - --port=9669
+      - --local_ip=graphd
       - --ws_ip=graphd
       - --ws_http_port=19669
       - --log_dir=/logs
@@ -231,9 +232,9 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
     depends_on:
-      - metad0
-      - metad1
-      - metad2
+      - storaged0
+      - storaged1
+      - storaged2
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://graphd:19669/status"]
       interval: 30s
@@ -253,13 +254,14 @@ services:
       - SYS_PTRACE
 
   graphd1:
-    image: vesoft/nebula-graphd:v2-nightly
+    image: vesoft/nebula-graphd:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
       - --meta_server_addrs=metad0:9559,metad1:9559,metad2:9559
       - --port=9669
+      - --local_ip=graphd1
       - --ws_ip=graphd1
       - --ws_http_port=19669
       - --log_dir=/logs
@@ -267,9 +269,9 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
     depends_on:
-      - metad0
-      - metad1
-      - metad2
+      - storaged0
+      - storaged1
+      - storaged2
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://graphd1:19669/status"]
       interval: 30s
@@ -289,13 +291,14 @@ services:
       - SYS_PTRACE
 
   graphd2:
-    image: vesoft/nebula-graphd:v2-nightly
+    image: vesoft/nebula-graphd:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
       - --meta_server_addrs=metad0:9559,metad1:9559,metad2:9559
       - --port=9669
+      - --local_ip=graphd2
       - --ws_ip=graphd2
       - --ws_http_port=19669
       - --log_dir=/logs
@@ -303,9 +306,9 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
     depends_on:
-      - metad0
-      - metad1
-      - metad2
+      - storaged0
+      - storaged1
+      - storaged2
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://graphd2:19669/status"]
       interval: 30s
