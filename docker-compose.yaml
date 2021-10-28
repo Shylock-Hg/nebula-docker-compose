@@ -16,11 +16,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://metad0:19559/status"]
       interval: 30s
@@ -34,6 +33,7 @@ services:
     volumes:
       - ./data/meta0:/data/meta
       - ./logs/meta0:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -56,11 +56,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://metad1:19559/status"]
       interval: 30s
@@ -74,6 +73,7 @@ services:
     volumes:
       - ./data/meta1:/data/meta
       - ./logs/meta1:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -96,11 +96,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://metad2:19559/status"]
       interval: 30s
@@ -114,6 +113,7 @@ services:
     volumes:
       - ./data/meta2:/data/meta
       - ./logs/meta2:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -136,11 +136,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - metad0
       - metad1
@@ -158,6 +157,7 @@ services:
     volumes:
       - ./data/storage0:/data/storage
       - ./logs/storage0:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -180,11 +180,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - metad0
       - metad1
@@ -202,6 +201,7 @@ services:
     volumes:
       - ./data/storage1:/data/storage
       - ./logs/storage1:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -224,11 +224,10 @@ services:
       - --v=0
       - --minloglevel=0
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - metad0
       - metad1
@@ -246,6 +245,7 @@ services:
     volumes:
       - ./data/storage2:/data/storage
       - ./logs/storage2:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -268,11 +268,10 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - storaged0
       - storaged1
@@ -289,6 +288,7 @@ services:
       - 19670
     volumes:
       - ./logs/graph:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -311,11 +311,10 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - storaged0
       - storaged1
@@ -332,6 +331,7 @@ services:
       - 19670
     volumes:
       - ./logs/graph1:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
@@ -354,11 +354,10 @@ services:
       - --minloglevel=0
       - --system_memory_high_watermark_ratio=0.95
       # ssl
-      - --ca_path=${ca_path}
-      - --cert_path=${cert_path}
-      - --key_path=${key_path}
-      - --enable_ssl=${enable_ssl}
-      - --password_path=${password_path}
+      - --cert_path=/certs/test.ca.pem
+      - --key_path=/certs/test.ca.key
+      - --password_path=/certs/test.ca.password
+      - --enable_ssl=true
     depends_on:
       - storaged0
       - storaged1
@@ -375,6 +374,7 @@ services:
       - 19670
     volumes:
       - ./logs/graph2:/logs
+      - ./certs:/certs
     networks:
       - nebula-net
     restart: on-failure
